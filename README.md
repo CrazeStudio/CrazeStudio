@@ -12,8 +12,6 @@
 
 Hey there! I'm **Mehetab**, also known as `craftingcrazegaming`. I'm a:
 - ⚡ Developer of cool apps, mods & systems  
-- 🧱 Minecraft Addon & Mod Creator (MCPE & Java)  
-- 💡 Creative mind behind Craze Panel, Crazefy, CraftingCraze, and more  
 - 🎯 Always learning, always building!
 
 ---
@@ -29,17 +27,6 @@ Hey there! I'm **Mehetab**, also known as `craftingcrazegaming`. I'm a:
 ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat&logo=github&logoColor=white)
 
 ---
-
-## 🚀 Projects I’m Working On
-
-- **Craze Panel** – Powerful game management panel (Better than skyport)
-- **CraftingCraze** – Ultimate gaming website with YouTube/Discord integration
-- **Crazefy** – Music + Video app inspired by Spotify + YouTube
-- **CARZEFY** – Next-gen YouTube-style player with background audio
-- **Minecraft Mods** – Ultimate Sword Addon, SecurityCraft PE, and more
-
----
-
 ## ⚡ Stats
 
 <p align="center">
