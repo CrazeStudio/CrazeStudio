@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | Showcase</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Core System Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0a0a0c;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(124, 252, 0, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05), transparent 25%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Grid Background */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Header Section --- */
+        header {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 60px;
+            padding: 0 20px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a3a3a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            color: #888;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Project Showcase Grid --- */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 24px;
+            margin-bottom: 100px;
+        }
+
+        /* --- Individual Project Card --- */
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        /* Staggered animation for cards */
+        .project-card:nth-child(1) { animation-delay: 0.2s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+
+        /* Card Hover Effects */
+        .project-card:hover {
+            transform: translateY(-12px);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Unique Glow Colors on Hover based on Project */
+        .card-craze:hover {
+            border-color: rgba(124, 252, 0, 0.4);
+            box-shadow: 0 20px 40px rgba(124, 252, 0, 0.1);
+        }
+
+        .card-fire:hover {
+            border-color: rgba(255, 126, 103, 0.4);
+            box-shadow: 0 20px 40px rgba(255, 126, 103, 0.1);
+        }
+
+        /* --- Logos inside cards --- */
+        .logo-container {
+            width: 110px;
+            height: 110px;
+            margin-bottom: 25px;
+            border-radius: 28%; /* Squircle look */
+            background: #151515;
+            padding: 6px;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .logo-container {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24%;
+        }
+
+        /* --- Card Typography --- */
+        .project-card h2 {
+            color: #ffffff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1; /* Pushes badge to bottom */
+        }
+
+        /* --- Categorization Badges --- */
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-software {
+            background: rgba(124, 252, 0, 0.1);
+            color: #7CFC00;
+            border: 1px solid rgba(124, 252, 0, 0.2);
+        }
+
+        .badge-mod {
+            background: rgba(255, 126, 103, 0.1);
+            color: #ff7e67;
+            border: 1px solid rgba(255, 126, 103, 0.2);
+        }
+
+        /* --- View Project Text --- */
+        .view-link {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .view-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-craze .view-link { color: #7CFC00; }
+        .card-fire .view-link { color: #ff7e67; }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            text-align: center;
+            color: #555;
+            font-size: 0.85rem;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <header>
+        <h1>My Projects</h1>
+        <p>A showcase of the tools, mods, and software I've engineered for the Minecraft community.</p>
+    </header>
+
+    <main class="projects-container">
+        
+        <a href="https://github.com/CrazeStudio/CrazeLauncher" target="_blank" rel="noopener noreferrer" class="project-card card-craze">
+            <div class="logo-container">
+                <img src="https://github.com/CrazeStudio.png" alt="CrazeLauncher Logo" onerror="this.src='logo.png'">
+            </div>
+            <h2>CrazeLauncher</h2>
+            <p>The ultimate Minecraft launcher featuring a premium UI architecture, one-click modpack installations, and advanced system performance optimizations.</p>
+            <span class="badge badge-software">Launcher / Software</span>
+            <div class="view-link">View on GitHub →</div>
+        </a>
+
+        <a href="https://modrinth.com/project/WYu8BNGG" target="_blank" rel="noopener noreferrer" class="project-card card-fire">
+            <div class="logo-container">
+                <img src="https://cdn.modrinth.com/data/WYu8BNGG/2361bcef871deea92435ba007ff2aff35f8a03b2.png" alt="Ultra Low Fire Logo">
+            </div>
+            <h2>Ultra Low Fire</h2>
+            <p>A clean and lightweight PvP resource pack that makes fire almost invisible. Removes screen clutter while burning, granting a massive advantage in combat.</p>
+            <span class="badge badge-mod">Resource Pack</span>
+            <div class="view-link">View on Modrinth →</div>
+        </a>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CrazeStudio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
