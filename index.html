@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects | Showcase</title>
     
-    <!-- Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Google AdSense Global Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3820525261727291" crossorigin="anonymous"></script>
 
     <style>
@@ -273,17 +271,10 @@
         .ad-container {
             width: 100%;
             max-width: 728px;
-            min-height: 90px;
+            min-height: 90px; /* Minimum height to prevent page jump */
             margin: 20px auto 60px auto;
             text-align: center;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.85rem;
+            /* Placeholder styles removed so the ad blends seamlessly */
         }
 
         footer {
@@ -305,7 +296,6 @@
 </head>
 <body>
 
-    <!-- Custom Cursor Elements -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
@@ -318,7 +308,6 @@
 
     <main class="projects-container">
         
-        <!-- Project 1: CrazeLauncher -->
         <div class="project-card card-craze">
             <div class="logo-container">
                 <img src="https://github.com/CrazeStudio.png" alt="CrazeLauncher Logo" onerror="this.src='logo.png'">
@@ -333,7 +322,6 @@
             </div>
         </div>
 
-        <!-- Project 2: Ultra Low Fire -->
         <div class="project-card card-fire">
             <div class="logo-container">
                 <img src="https://cdn.modrinth.com/data/WYu8BNGG/2361bcef871deea92435ba007ff2aff35f8a03b2.png" alt="Ultra Low Fire Logo">
@@ -349,17 +337,22 @@
 
     </main>
 
-    <!-- Google AdSense Container -->
     <div class="ad-container">
-        <!-- ONCE YOU CREATE AN AD UNIT IN ADSENSE, PASTE THE <ins> CODE HERE INSTEAD OF THIS TEXT -->
-        Advertisement Space
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-3820525261727291"
+             data-ad-slot="6693303061"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 
     <footer>
         <p>&copy; 2026 CrazeStudio. All rights reserved.</p>
     </footer>
 
-    <!-- Interactive JavaScript -->
     <script>
         // 1. Custom Cursor Logic
         const cursorDot = document.querySelector('.cursor-dot');
