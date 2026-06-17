@@ -8,6 +8,9 @@
     <!-- Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Google AdSense Global Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3820525261727291" crossorigin="anonymous"></script>
+
     <style>
         /* --- Core System Resets --- */
         * {
@@ -138,8 +141,8 @@
             width: 100%;
             max-width: 1000px;
             padding: 0 24px;
-            margin-bottom: 100px;
-            perspective: 1000px; /* Required for 3D tilt effect */
+            margin-bottom: 60px;
+            perspective: 1000px;
         }
 
         /* --- Individual Project Card --- */
@@ -158,13 +161,12 @@
             position: relative;
             overflow: hidden;
             opacity: 0;
-            animation: fadeInUp 0.8s ease-out 2s forwards; /* Fades in after typing */
+            animation: fadeInUp 0.8s ease-out 2s forwards;
             transform-style: preserve-3d;
         }
 
         .project-card:nth-child(2) { animation-delay: 2.2s; }
 
-        /* Unique Glow Colors on Hover */
         .card-craze:hover { border-color: rgba(124, 252, 0, 0.4); box-shadow: 0 20px 40px rgba(124, 252, 0, 0.15); }
         .card-fire:hover { border-color: rgba(255, 126, 103, 0.4); box-shadow: 0 20px 40px rgba(255, 126, 103, 0.15); }
 
@@ -179,7 +181,7 @@
             border: 2px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform: translateZ(30px); /* 3D pop out effect */
+            transform: translateZ(30px);
         }
 
         .project-card:hover .logo-container {
@@ -231,7 +233,7 @@
             display: flex;
             gap: 12px;
             width: 100%;
-            transform: translateZ(25px); /* 3D effect */
+            transform: translateZ(25px);
         }
 
         .btn {
@@ -248,14 +250,12 @@
             z-index: 1;
         }
 
-        /* CrazeLauncher Buttons */
         .btn-craze-primary { background: rgba(124, 252, 0, 0.15); color: #7CFC00; border: 1px solid rgba(124, 252, 0, 0.3); }
         .btn-craze-primary:hover { background: #7CFC00; color: #050505; box-shadow: 0 0 15px rgba(124, 252, 0, 0.5); }
         
         .btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); }
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); }
 
-        /* Ultra Low Fire Buttons */
         .btn-fire-primary { background: rgba(255, 126, 103, 0.15); color: #ff7e67; border: 1px solid rgba(255, 126, 103, 0.3); }
         .btn-fire-primary:hover { background: #ff7e67; color: #050505; box-shadow: 0 0 15px rgba(255, 126, 103, 0.5); }
 
@@ -269,7 +269,23 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Footer --- */
+        /* --- Footer & Ads --- */
+        .ad-container {
+            width: 100%;
+            max-width: 728px;
+            min-height: 90px;
+            margin: 20px auto 60px auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+        }
+
         footer {
             margin-top: auto;
             padding: 30px;
@@ -281,7 +297,7 @@
         }
 
         @media (max-width: 768px) {
-            * { cursor: auto; } /* Disable custom cursor on mobile */
+            * { cursor: auto; }
             .cursor-dot, .cursor-outline { display: none; }
             header h1 { white-space: normal; width: auto; border-right: none; animation: none; }
         }
@@ -312,7 +328,6 @@
             <span class="badge badge-software">Launcher / Software</span>
             
             <div class="card-actions">
-                <!-- UPDATED LINK HERE -->
                 <a href="https://crazelauncher.netlify.app" target="_blank" class="btn btn-craze-primary">Visit Website</a>
                 <a href="https://github.com/CrazeStudio/CrazeLauncher" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
             </div>
@@ -334,6 +349,12 @@
 
     </main>
 
+    <!-- Google AdSense Container -->
+    <div class="ad-container">
+        <!-- ONCE YOU CREATE AN AD UNIT IN ADSENSE, PASTE THE <ins> CODE HERE INSTEAD OF THIS TEXT -->
+        Advertisement Space
+    </div>
+
     <footer>
         <p>&copy; 2026 CrazeStudio. All rights reserved.</p>
     </footer>
@@ -348,11 +369,9 @@
             const posX = e.clientX;
             const posY = e.clientY;
 
-            // Dot follows exactly
             cursorDot.style.left = `${posX}px`;
             cursorDot.style.top = `${posY}px`;
 
-            // Outline follows with a slight delay for a smooth effect
             cursorOutline.animate({
                 left: `${posX}px`,
                 top: `${posY}px`
@@ -365,20 +384,18 @@
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x position within the element
-                const y = e.clientY - rect.top;  // y position within the element
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
                 
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                // Calculate rotation (max 10 degrees)
                 const rotateX = ((y - centerY) / centerY) * -10;
                 const rotateY = ((x - centerX) / centerX) * 10;
                 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
             
-            // Reset position when mouse leaves
             card.addEventListener('mouseleave', () => {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
             });
