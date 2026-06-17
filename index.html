@@ -16,6 +16,7 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
+            cursor: none; /* Hide default cursor for custom cursor */
         }
 
         body {
@@ -32,6 +33,43 @@
             position: relative;
         }
 
+        /* --- Fun Feature 1: Custom Glowing Cursor --- */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, border-color 0.2s, transform 0.1s ease-out;
+        }
+
+        /* Hover states for the cursor */
+        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline {
+            width: 60px;
+            height: 60px;
+            border-color: #7CFC00;
+            background-color: rgba(124, 252, 0, 0.1);
+        }
+
         /* Animated Grid Background */
         .bg-grid {
             position: fixed;
@@ -41,15 +79,20 @@
             background-size: 50px 50px;
             z-index: -1;
             pointer-events: none;
+            animation: moveGrid 20s linear infinite;
         }
 
-        /* --- Header Section --- */
+        @keyframes moveGrid {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* --- Header Section with Typing Animation --- */
         header {
             text-align: center;
             margin-top: 80px;
             margin-bottom: 60px;
             padding: 0 20px;
-            animation: fadeInDown 0.8s ease-out;
         }
 
         header h1 {
@@ -60,6 +103,22 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
             letter-spacing: -1px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 4px solid #7CFC00;
+            margin: 0 auto 10px auto;
+            width: 0;
+            animation: typing 2s steps(40, end) forwards, blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #7CFC00; }
         }
 
         header p {
@@ -67,6 +126,8 @@
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease-out 1.5s forwards;
         }
 
         /* --- Project Showcase Grid --- */
@@ -78,6 +139,7 @@
             max-width: 1000px;
             padding: 0 24px;
             margin-bottom: 100px;
+            perspective: 1000px; /* Required for 3D tilt effect */
         }
 
         /* --- Individual Project Card --- */
@@ -92,48 +154,36 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.1s ease, border-color 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 0.8s ease-out backwards;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 2s forwards; /* Fades in after typing */
+            transform-style: preserve-3d;
         }
 
-        /* Staggered animation for cards */
-        .project-card:nth-child(1) { animation-delay: 0.2s; }
-        .project-card:nth-child(2) { animation-delay: 0.4s; }
+        .project-card:nth-child(2) { animation-delay: 2.2s; }
 
-        /* Card Hover Effects */
-        .project-card:hover {
-            transform: translateY(-12px);
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        /* Unique Glow Colors on Hover based on Project */
-        .card-craze:hover {
-            border-color: rgba(124, 252, 0, 0.4);
-            box-shadow: 0 20px 40px rgba(124, 252, 0, 0.1);
-        }
-
-        .card-fire:hover {
-            border-color: rgba(255, 126, 103, 0.4);
-            box-shadow: 0 20px 40px rgba(255, 126, 103, 0.1);
-        }
+        /* Unique Glow Colors on Hover */
+        .card-craze:hover { border-color: rgba(124, 252, 0, 0.4); box-shadow: 0 20px 40px rgba(124, 252, 0, 0.15); }
+        .card-fire:hover { border-color: rgba(255, 126, 103, 0.4); box-shadow: 0 20px 40px rgba(255, 126, 103, 0.15); }
 
         /* --- Logos inside cards --- */
         .logo-container {
             width: 110px;
             height: 110px;
             margin-bottom: 25px;
-            border-radius: 28%; /* Squircle look */
+            border-radius: 28%;
             background: #151515;
             padding: 6px;
             border: 2px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateZ(30px); /* 3D pop out effect */
         }
 
         .project-card:hover .logo-container {
-            transform: scale(1.05) rotate(-3deg);
+            transform: translateZ(50px) scale(1.05) rotate(-5deg);
         }
 
         .logo-container img {
@@ -149,6 +199,7 @@
             font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 12px;
+            transform: translateZ(20px);
         }
 
         .project-card p {
@@ -156,7 +207,8 @@
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 25px;
-            flex-grow: 1; /* Pushes badge/buttons to bottom */
+            flex-grow: 1;
+            transform: translateZ(10px);
         }
 
         /* --- Categorization Badges --- */
@@ -168,33 +220,18 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 25px;
+            transform: translateZ(15px);
         }
 
-        .badge-software {
-            background: rgba(124, 252, 0, 0.1);
-            color: #7CFC00;
-            border: 1px solid rgba(124, 252, 0, 0.2);
-        }
+        .badge-software { background: rgba(124, 252, 0, 0.1); color: #7CFC00; border: 1px solid rgba(124, 252, 0, 0.2); }
+        .badge-mod { background: rgba(255, 126, 103, 0.1); color: #ff7e67; border: 1px solid rgba(255, 126, 103, 0.2); }
 
-        .badge-mod {
-            background: rgba(255, 126, 103, 0.1);
-            color: #ff7e67;
-            border: 1px solid rgba(255, 126, 103, 0.2);
-        }
-
-        /* --- Action Buttons (Replacing the single link) --- */
+        /* --- Action Buttons --- */
         .card-actions {
             display: flex;
             gap: 12px;
             width: 100%;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover .card-actions {
-            opacity: 1;
-            transform: translateY(0);
+            transform: translateZ(25px); /* 3D effect */
         }
 
         .btn {
@@ -206,45 +243,27 @@
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
         /* CrazeLauncher Buttons */
-        .btn-craze-primary {
-            background: rgba(124, 252, 0, 0.15);
-            color: #7CFC00;
-            border: 1px solid rgba(124, 252, 0, 0.3);
-        }
-        .btn-craze-primary:hover {
-            background: #7CFC00;
-            color: #050505;
-        }
+        .btn-craze-primary { background: rgba(124, 252, 0, 0.15); color: #7CFC00; border: 1px solid rgba(124, 252, 0, 0.3); }
+        .btn-craze-primary:hover { background: #7CFC00; color: #050505; box-shadow: 0 0 15px rgba(124, 252, 0, 0.5); }
         
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); }
 
         /* Ultra Low Fire Buttons */
-        .btn-fire-primary {
-            background: rgba(255, 126, 103, 0.15);
-            color: #ff7e67;
-            border: 1px solid rgba(255, 126, 103, 0.3);
-        }
-        .btn-fire-primary:hover {
-            background: #ff7e67;
-            color: #050505;
-        }
+        .btn-fire-primary { background: rgba(255, 126, 103, 0.15); color: #ff7e67; border: 1px solid rgba(255, 126, 103, 0.3); }
+        .btn-fire-primary:hover { background: #ff7e67; color: #050505; box-shadow: 0 0 15px rgba(255, 126, 103, 0.5); }
 
         /* --- Animations --- */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -261,16 +280,18 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Responsive Fix for Buttons */
-        @media (max-width: 400px) {
-            .card-actions {
-                flex-direction: column;
-            }
+        @media (max-width: 768px) {
+            * { cursor: auto; } /* Disable custom cursor on mobile */
+            .cursor-dot, .cursor-outline { display: none; }
+            header h1 { white-space: normal; width: auto; border-right: none; animation: none; }
         }
-
     </style>
 </head>
 <body>
+
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
 
     <div class="bg-grid"></div>
 
@@ -281,7 +302,7 @@
 
     <main class="projects-container">
         
-        <!-- Project 1: CrazeLauncher (Now a div containing multiple links) -->
+        <!-- Project 1: CrazeLauncher -->
         <div class="project-card card-craze">
             <div class="logo-container">
                 <img src="https://github.com/CrazeStudio.png" alt="CrazeLauncher Logo" onerror="this.src='logo.png'">
@@ -290,15 +311,14 @@
             <p>The ultimate Minecraft launcher featuring a premium UI architecture, one-click modpack installations, and advanced system performance optimizations.</p>
             <span class="badge badge-software">Launcher / Software</span>
             
-            <!-- Button Row -->
             <div class="card-actions">
-                <!-- IMPORTANT: Replace '#' with the actual URL to your CrazeLauncher Website -->
-                <a href="#" class="btn btn-craze-primary">Visit Website</a>
+                <!-- UPDATED LINK HERE -->
+                <a href="https://crazelauncher.netlify.app" target="_blank" class="btn btn-craze-primary">Visit Website</a>
                 <a href="https://github.com/CrazeStudio/CrazeLauncher" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
             </div>
         </div>
 
-        <!-- Project 2: Ultra Low Fire (Also updated to match the new button style) -->
+        <!-- Project 2: Ultra Low Fire -->
         <div class="project-card card-fire">
             <div class="logo-container">
                 <img src="https://cdn.modrinth.com/data/WYu8BNGG/2361bcef871deea92435ba007ff2aff35f8a03b2.png" alt="Ultra Low Fire Logo">
@@ -307,7 +327,6 @@
             <p>A clean and lightweight PvP resource pack that makes fire almost invisible. Removes screen clutter while burning, granting a massive advantage in combat.</p>
             <span class="badge badge-mod">Resource Pack</span>
             
-            <!-- Button Row -->
             <div class="card-actions">
                 <a href="https://modrinth.com/project/WYu8BNGG" target="_blank" rel="noopener noreferrer" class="btn btn-fire-primary">Modrinth</a>
             </div>
@@ -319,5 +338,51 @@
         <p>&copy; 2026 CrazeStudio. All rights reserved.</p>
     </footer>
 
+    <!-- Interactive JavaScript -->
+    <script>
+        // 1. Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows exactly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with a slight delay for a smooth effect
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // 2. 3D Hover Tilt Effect for Cards
+        const cards = document.querySelectorAll('.project-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element
+                const y = e.clientY - rect.top;  // y position within the element
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Calculate rotation (max 10 degrees)
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            // Reset position when mouse leaves
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+    </script>
 </body>
 </html>
