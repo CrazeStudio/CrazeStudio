@@ -17,7 +17,7 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
-            cursor: none; /* Hide default cursor for custom cursor */
+            cursor: none; 
         }
 
         body {
@@ -34,264 +34,99 @@
             position: relative;
         }
 
-        /* --- Fun Feature 1: Custom Glowing Cursor --- */
+        /* --- Custom Glowing Cursor --- */
         .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #fff;
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            width: 8px; height: 8px; background-color: #fff; border-radius: 50%;
+            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%); box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
-
         .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, border-color 0.2s, transform 0.1s ease-out;
+            width: 40px; height: 40px; border: 2px solid rgba(255, 255, 255, 0.5); border-radius: 50%;
+            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, border-color 0.2s;
         }
-
-        /* Hover states for the cursor */
         a:hover ~ .cursor-outline, button:hover ~ .cursor-outline {
-            width: 60px;
-            height: 60px;
-            border-color: #7CFC00;
-            background-color: rgba(124, 252, 0, 0.1);
+            width: 60px; height: 60px; border-color: #7CFC00; background-color: rgba(124, 252, 0, 0.1);
         }
 
         /* Animated Grid Background */
         .bg-grid {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            pointer-events: none;
+            background-size: 50px 50px; z-index: -1; pointer-events: none;
             animation: moveGrid 20s linear infinite;
         }
+        @keyframes moveGrid { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
 
-        @keyframes moveGrid {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(50px); }
-        }
-
-        /* --- Header Section with Typing Animation --- */
-        header {
-            text-align: center;
-            margin-top: 80px;
-            margin-bottom: 20px;
-            padding: 0 20px;
-        }
-
+        /* --- Header Section --- */
+        header { text-align: center; margin-top: 80px; margin-bottom: 20px; padding: 0 20px; }
         header h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
+            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
             background: linear-gradient(135deg, #ffffff, #a3a3a3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 4px solid #7CFC00;
-            margin: 0 auto 10px auto;
-            width: 0;
-            animation: typing 2s steps(40, end) forwards, blink 0.75s step-end infinite;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px; letter-spacing: -1px;
         }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: #7CFC00; }
-        }
-
-        header p {
-            color: #888;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0;
-            animation: fadeInDown 0.8s ease-out 1.5s forwards;
-        }
+        header p { color: #888; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
         /* --- Project Showcase Grid --- */
         .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            width: 100%;
-            max-width: 1000px;
-            padding: 0 24px;
-            margin-bottom: 60px;
-            perspective: 1000px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;
+            width: 100%; max-width: 1000px; padding: 0 24px; margin-bottom: 60px; perspective: 1000px;
         }
 
         /* --- Individual Project Card --- */
         .project-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 24px; padding: 40px 30px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
             transition: transform 0.1s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 2s forwards;
-            transform-style: preserve-3d;
+            position: relative; overflow: hidden; transform-style: preserve-3d;
         }
-
-        .project-card:nth-child(2) { animation-delay: 2.2s; }
-
         .card-craze:hover { border-color: rgba(124, 252, 0, 0.4); box-shadow: 0 20px 40px rgba(124, 252, 0, 0.15); }
         .card-fire:hover { border-color: rgba(255, 126, 103, 0.4); box-shadow: 0 20px 40px rgba(255, 126, 103, 0.15); }
 
-        /* --- Logos inside cards --- */
         .logo-container {
-            width: 110px;
-            height: 110px;
-            margin-bottom: 25px;
-            border-radius: 28%;
-            background: #151515;
-            padding: 6px;
-            border: 2px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform: translateZ(30px);
+            width: 110px; height: 110px; margin-bottom: 25px; border-radius: 28%;
+            background: #151515; padding: 6px; border: 2px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); transform: translateZ(30px);
         }
+        .logo-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 24%; }
+        .project-card h2 { color: #ffffff; font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; transform: translateZ(20px); }
+        .project-card p { color: #a0a0a0; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; transform: translateZ(10px); }
 
-        .project-card:hover .logo-container {
-            transform: translateZ(50px) scale(1.05) rotate(-5deg);
-        }
-
-        .logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 24%;
-        }
-
-        /* --- Card Typography --- */
-        .project-card h2 {
-            color: #ffffff;
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            transform: translateZ(20px);
-        }
-
-        .project-card p {
-            color: #a0a0a0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            flex-grow: 1;
-            transform: translateZ(10px);
-        }
-
-        /* --- Categorization Badges --- */
-        .badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 6px 16px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            transform: translateZ(15px);
-        }
-
+        .badge { font-size: 0.75rem; font-weight: 600; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; transform: translateZ(15px); }
         .badge-software { background: rgba(124, 252, 0, 0.1); color: #7CFC00; border: 1px solid rgba(124, 252, 0, 0.2); }
         .badge-mod { background: rgba(255, 126, 103, 0.1); color: #ff7e67; border: 1px solid rgba(255, 126, 103, 0.2); }
 
-        /* --- Action Buttons --- */
-        .card-actions {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-            transform: translateZ(25px);
-        }
-
-        .btn {
-            flex: 1;
-            text-align: center;
-            padding: 10px 0;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
+        .card-actions { display: flex; gap: 12px; width: 100%; transform: translateZ(25px); }
+        .btn { flex: 1; text-align: center; padding: 10px 0; border-radius: 12px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.2s ease; z-index: 1; }
         .btn-craze-primary { background: rgba(124, 252, 0, 0.15); color: #7CFC00; border: 1px solid rgba(124, 252, 0, 0.3); }
-        .btn-craze-primary:hover { background: #7CFC00; color: #050505; box-shadow: 0 0 15px rgba(124, 252, 0, 0.5); }
-        
+        .btn-craze-primary:hover { background: #7CFC00; color: #050505; }
         .btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); }
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); }
-
         .btn-fire-primary { background: rgba(255, 126, 103, 0.15); color: #ff7e67; border: 1px solid rgba(255, 126, 103, 0.3); }
-        .btn-fire-primary:hover { background: #ff7e67; color: #050505; box-shadow: 0 0 15px rgba(255, 126, 103, 0.5); }
+        .btn-fire-primary:hover { background: #ff7e67; color: #050505; }
 
-        /* --- Animations --- */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Footer & Ads --- */
+        /* --- Visual Ad Containers --- */
         .ad-container {
             width: 100%;
             max-width: 728px;
             min-height: 90px;
-            margin: 20px auto 40px auto;
-            text-align: center;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 2.5s forwards; /* Fades in smoothly after the cards */
+            margin: 30px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto; /* Allows horizontal scrolling on mobile so it doesn't break the page */
+            overflow-y: hidden;
         }
 
-        footer {
-            margin-top: auto;
-            padding: 30px;
-            text-align: center;
-            color: #555;
-            font-size: 0.85rem;
-            width: 100%;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        footer { margin-top: auto; padding: 30px; text-align: center; color: #555; font-size: 0.85rem; width: 100%; border-top: 1px solid rgba(255, 255, 255, 0.05); }
 
         @media (max-width: 768px) {
             * { cursor: auto; }
             .cursor-dot, .cursor-outline { display: none; }
-            header h1 { white-space: normal; width: auto; border-right: none; animation: none; }
         }
     </style>
 </head>
@@ -299,7 +134,6 @@
 
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
-
     <div class="bg-grid"></div>
 
     <header>
@@ -309,11 +143,9 @@
 
     <div class="ad-container">
         <ins class="adsbygoogle"
-             style="display:block; text-align:center;"
-             data-ad-layout="in-article"
-             data-ad-format="fluid"
+             style="display:inline-block;width:728px;height:90px"
              data-ad-client="ca-pub-3820525261727291"
-             data-ad-slot="6693303061"></ins>
+             data-ad-slot="9158388459"></ins>
         <script>
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
@@ -352,11 +184,9 @@
 
     <div class="ad-container">
         <ins class="adsbygoogle"
-             style="display:block; text-align:center;"
-             data-ad-layout="in-article"
-             data-ad-format="fluid"
+             style="display:inline-block;width:728px;height:90px"
              data-ad-client="ca-pub-3820525261727291"
-             data-ad-slot="6693303061"></ins>
+             data-ad-slot="9158388459"></ins>
         <script>
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
@@ -367,41 +197,25 @@
     </footer>
 
     <script>
-        // 1. Custom Cursor Logic
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
 
         window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+            const posX = e.clientX; const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
         });
 
-        // 2. 3D Hover Tilt Effect for Cards
         const cards = document.querySelectorAll('.project-card');
-        
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
+                if (window.innerWidth <= 768) return; // Disable tilt on mobile
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -10;
-                const rotateY = ((x - centerX) / centerX) * 10;
-                
+                const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -10;
+                const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 10;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
-            
             card.addEventListener('mouseleave', () => {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
             });
