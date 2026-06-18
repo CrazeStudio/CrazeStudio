@@ -92,7 +92,7 @@
         header {
             text-align: center;
             margin-top: 80px;
-            margin-bottom: 60px;
+            margin-bottom: 20px;
             padding: 0 20px;
         }
 
@@ -271,10 +271,11 @@
         .ad-container {
             width: 100%;
             max-width: 728px;
-            min-height: 90px; /* Minimum height to prevent page jump */
-            margin: 20px auto 60px auto;
+            min-height: 90px;
+            margin: 20px auto 40px auto;
             text-align: center;
-            /* Placeholder styles removed so the ad blends seamlessly */
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 2.5s forwards; /* Fades in smoothly after the cards */
         }
 
         footer {
@@ -305,6 +306,18 @@
         <h1>My Projects</h1>
         <p>A showcase of the tools, mods, and software I've engineered for the Minecraft community.</p>
     </header>
+
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-3820525261727291"
+             data-ad-slot="6693303061"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <main class="projects-container">
         
