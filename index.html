@@ -1,226 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects | Showcase</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3820525261727291"
-     crossorigin="anonymous"></script>
+<title>CrazeStudio | Projects Showcase</title>
 
-    <style>
-        /* --- Core System Resets --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-            cursor: none; 
-        }
+<meta name="description" content="Official CrazeStudio project showcase featuring CrazeLauncher, Ultra Low Fire, and other software and Minecraft projects developed by Mehetab.">
 
-        body {
-            background-color: #0a0a0c;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(124, 252, 0, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(255, 107, 107, 0.05), transparent 25%);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        /* --- Custom Glowing Cursor --- */
-        .cursor-dot {
-            width: 8px; height: 8px; background-color: #fff; border-radius: 50%;
-            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%); box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-        .cursor-outline {
-            width: 40px; height: 40px; border: 2px solid rgba(255, 255, 255, 0.5); border-radius: 50%;
-            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
-            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, border-color 0.2s;
-        }
-        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline {
-            width: 60px; height: 60px; border-color: #7CFC00; background-color: rgba(124, 252, 0, 0.1);
-        }
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3820525261727291"
+crossorigin="anonymous"></script>
 
-        /* Animated Grid Background */
-        .bg-grid {
-            position: fixed; inset: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -1; pointer-events: none;
-            animation: moveGrid 20s linear infinite;
-        }
-        @keyframes moveGrid { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-        /* --- Header Section --- */
-        header { text-align: center; margin-top: 80px; margin-bottom: 20px; padding: 0 20px; }
-        header h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
-            background: linear-gradient(135deg, #ffffff, #a3a3a3);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px; letter-spacing: -1px;
-        }
-        header p { color: #888; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+body{
+background:#0a0a0c;
+color:#fff;
+line-height:1.8;
+}
 
-        /* --- Project Showcase Grid --- */
-        .projects-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;
-            width: 100%; max-width: 1000px; padding: 0 24px; margin-bottom: 60px; perspective: 1000px;
-        }
+header{
+text-align:center;
+padding:80px 20px 40px;
+}
 
-        /* --- Individual Project Card --- */
-        .project-card {
-            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 24px; padding: 40px 30px;
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-            transition: transform 0.1s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-            position: relative; overflow: hidden; transform-style: preserve-3d;
-        }
-        .card-craze:hover { border-color: rgba(124, 252, 0, 0.4); box-shadow: 0 20px 40px rgba(124, 252, 0, 0.15); }
-        .card-fire:hover { border-color: rgba(255, 126, 103, 0.4); box-shadow: 0 20px 40px rgba(255, 126, 103, 0.15); }
+header h1{
+font-size:3rem;
+font-weight:800;
+}
 
-        .logo-container {
-            width: 110px; height: 110px; margin-bottom: 25px; border-radius: 28%;
-            background: #151515; padding: 6px; border: 2px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); transform: translateZ(30px);
-        }
-        .logo-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 24%; }
-        .project-card h2 { color: #ffffff; font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; transform: translateZ(20px); }
-        .project-card p { color: #a0a0a0; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; transform: translateZ(10px); }
+header p{
+color:#aaa;
+max-width:700px;
+margin:auto;
+}
 
-        .badge { font-size: 0.75rem; font-weight: 600; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; transform: translateZ(15px); }
-        .badge-software { background: rgba(124, 252, 0, 0.1); color: #7CFC00; border: 1px solid rgba(124, 252, 0, 0.2); }
-        .badge-mod { background: rgba(255, 126, 103, 0.1); color: #ff7e67; border: 1px solid rgba(255, 126, 103, 0.2); }
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
 
-        .card-actions { display: flex; gap: 12px; width: 100%; transform: translateZ(25px); }
-        .btn { flex: 1; text-align: center; padding: 10px 0; border-radius: 12px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.2s ease; z-index: 1; }
-        .btn-craze-primary { background: rgba(124, 252, 0, 0.15); color: #7CFC00; border: 1px solid rgba(124, 252, 0, 0.3); }
-        .btn-craze-primary:hover { background: #7CFC00; color: #050505; }
-        .btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); }
-        .btn-fire-primary { background: rgba(255, 126, 103, 0.15); color: #ff7e67; border: 1px solid rgba(255, 126, 103, 0.3); }
-        .btn-fire-primary:hover { background: #ff7e67; color: #050505; }
+.section{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+padding:30px;
+margin-bottom:30px;
+}
 
-        /* --- Visual Ad Containers --- */
-        .ad-container {
-            width: 100%;
-            max-width: 728px;
-            min-height: 90px;
-            margin: 30px auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-x: auto; /* Allows horizontal scrolling on mobile so it doesn't break the page */
-            overflow-y: hidden;
-        }
+.section h2{
+margin-bottom:15px;
+color:#7CFC00;
+}
 
-        footer { margin-top: auto; padding: 30px; text-align: center; color: #555; font-size: 0.85rem; width: 100%; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.section p{
+color:#d0d0d0;
+margin-bottom:15px;
+}
 
-        @media (max-width: 768px) {
-            * { cursor: auto; }
-            .cursor-dot, .cursor-outline { display: none; }
-        }
-    </style>
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+padding:25px;
+text-align:center;
+}
+
+.card img{
+width:100px;
+height:100px;
+border-radius:20px;
+margin-bottom:15px;
+}
+
+.btn{
+display:inline-block;
+padding:10px 18px;
+margin:5px;
+border-radius:10px;
+text-decoration:none;
+font-weight:600;
+}
+
+.btn-primary{
+background:#7CFC00;
+color:#000;
+}
+
+.btn-secondary{
+background:#222;
+color:#fff;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-    <div class="bg-grid"></div>
+<header>
+<h1>CrazeStudio</h1>
+<p>
+Official project showcase featuring software, Minecraft tools,
+resource packs and launcher development projects created by Mehetab.
+</p>
+</header>
 
-    <header>
-        <h1>My Projects</h1>
-        <p>A showcase of the tools, mods, and software I've engineered for the Minecraft community.</p>
-    </header>
+<div class="container">
 
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
-             data-ad-client="ca-pub-3820525261727291"
-             data-ad-slot="9158388459"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+<section class="section">
+<h2>About Me</h2>
 
-    <main class="projects-container">
-        
-        <div class="project-card card-craze">
-            <div class="logo-container">
-                <img src="https://github.com/CrazeStudio.png" alt="CrazeLauncher Logo" onerror="this.src='logo.png'">
-            </div>
-            <h2>CrazeLauncher</h2>
-            <p>The ultimate Minecraft launcher featuring a premium UI architecture, one-click modpack installations, and advanced system performance optimizations.</p>
-            <span class="badge badge-software">Launcher / Software</span>
-            
-            <div class="card-actions">
-                <a href="https://crazelauncher.netlify.app" target="_blank" class="btn btn-craze-primary">Visit Website</a>
-                <a href="https://github.com/CrazeStudio/CrazeLauncher" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
-            </div>
-        </div>
+<p>
+Hello! My name is Mehetab and I am the creator of CrazeStudio.
+I enjoy building software, web applications, Minecraft tools,
+resource packs, launchers and experimental projects.
+</p>
 
-        <div class="project-card card-fire">
-            <div class="logo-container">
-                <img src="https://cdn.modrinth.com/data/WYu8BNGG/2361bcef871deea92435ba007ff2aff35f8a03b2.png" alt="Ultra Low Fire Logo">
-            </div>
-            <h2>Ultra Low Fire</h2>
-            <p>A clean and lightweight PvP resource pack that makes fire almost invisible. Removes screen clutter while burning, granting a massive advantage in combat.</p>
-            <span class="badge badge-mod">Resource Pack</span>
-            
-            <div class="card-actions">
-                <a href="https://modrinth.com/project/WYu8BNGG" target="_blank" rel="noopener noreferrer" class="btn btn-fire-primary">Modrinth</a>
-            </div>
-        </div>
+<p>
+Most of my projects are developed using mobile devices while
+continuously learning HTML, CSS, JavaScript, Python and Android
+development technologies.
+</p>
 
-    </main>
+<p>
+This website serves as the official portfolio and project showcase
+for CrazeStudio where visitors can explore my creations and follow
+future development updates.
+</p>
+</section>
 
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
-             data-ad-client="ca-pub-3820525261727291"
-             data-ad-slot="9158388459"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+<section class="section">
+<h2>About CrazeLauncher</h2>
 
-    <footer>
-        <p>&copy; 2026 CrazeStudio. All rights reserved.</p>
-    </footer>
+<p>
+CrazeLauncher is one of my primary projects. It is a Minecraft
+launcher focused on creating a modern experience with a clean
+interface and future expansion possibilities.
+</p>
 
-    <script>
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
+<p>
+The project aims to simplify Minecraft management while providing
+easy access to launcher features and customization options.
+</p>
+</section>
 
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX; const posY = e.clientY;
-            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
-            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
-        });
+<section class="section">
+<h2>About Ultra Low Fire</h2>
 
-        const cards = document.querySelectorAll('.project-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                if (window.innerWidth <= 768) return; // Disable tilt on mobile
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-                const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -10;
-                const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 10;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
-        });
-    </script>
+<p>
+Ultra Low Fire is a Minecraft resource pack designed to improve
+visibility by reducing the visual obstruction caused by fire
+effects during gameplay.
+</p>
+
+<p>
+The pack is lightweight and intended for players who prefer a
+cleaner gameplay experience.
+</p>
+</section>
+<section class="section">
+<h2>Featured Projects</h2>
+
+<div class="projects">
+
+<div class="card">
+<img src="https://github.com/CrazeStudio.png" alt="CrazeLauncher">
+
+<h3>CrazeLauncher</h3>
+
+<p>
+A Minecraft launcher project focused on providing a clean user
+experience and future support for launcher customization.
+</p>
+
+<a href="https://crazelauncher.netlify.app"
+target="_blank"
+class="btn btn-primary">
+Visit Website
+</a>
+
+<a href="https://github.com/CrazeStudio/CrazeLauncher"
+target="_blank"
+class="btn btn-secondary">
+GitHub
+</a>
+
+</div>
+
+<div class="card">
+
+<img src="https://cdn.modrinth.com/data/WYu8BNGG/2361bcef871deea92435ba007ff2aff35f8a03b2.png"
+alt="Ultra Low Fire">
+
+<h3>Ultra Low Fire</h3>
+
+<p>
+A lightweight Minecraft resource pack designed to improve
+visibility during gameplay.
+</p>
+
+<a href="https://modrinth.com/project/WYu8BNGG"
+target="_blank"
+class="btn btn-primary">
+View Project
+</a>
+
+</div>
+
+</div>
+</section>
+
+<!-- Single AdSense Unit -->
+
+<div style="text-align:center;margin:40px 0;">
+
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-3820525261727291"
+data-ad-slot="9158388459"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+<section class="section">
+
+<h2>Privacy Policy</h2>
+
+<p>
+This website may use third-party services such as Google AdSense
+to display advertisements. These services may use cookies and
+similar technologies to improve advertising performance and user
+experience.
+</p>
+
+<p>
+This website does not require visitors to create accounts or
+submit personal information in order to browse publicly available
+content.
+</p>
+
+<p>
+Links on this website may direct visitors to external websites.
+Those websites maintain their own privacy policies and practices.
+</p>
+
+<p>
+By continuing to use this website, visitors agree to the
+collection and processing of information as described in this
+Privacy Policy.
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Terms of Service</h2>
+
+<p>
+By accessing and using this website, visitors agree to use it
+responsibly and in accordance with applicable laws and
+regulations.
+</p>
+
+<p>
+All original content, project names, graphics, logos, designs,
+and materials published by CrazeStudio remain the property of
+their respective owners unless otherwise stated.
+</p>
+
+<p>
+Software, tools, resource packs, and downloadable content are
+provided on an "as-is" basis without warranties regarding
+availability, compatibility, or performance.
+</p>
+
+<p>
+CrazeStudio reserves the right to update, modify, remove, or
+replace website content at any time without prior notice.
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Contact</h2>
+
+<p>
+For project updates, development information, bug reports, or
+feedback, please visit the official CrazeStudio GitHub profile.
+</p>
+
+<p>
+GitHub:
+<a href="https://github.com/CrazeStudio"
+target="_blank"
+style="color:#7CFC00;">
+https://github.com/CrazeStudio
+</a>
+</p>
+
+<p>
+Project Website:
+<a href="https://crazelauncher.netlify.app"
+target="_blank"
+style="color:#7CFC00;">
+https://crazelauncher.netlify.app
+</a>
+</p>
+
+</section>
+
+</div>
+
+<footer style="
+text-align:center;
+padding:30px;
+color:#888;
+border-top:1px solid rgba(255,255,255,.08);
+margin-top:30px;
+">
+
+<p>
+© 2026 CrazeStudio. All Rights Reserved.
+</p>
+
+<p style="margin-top:10px;">
+<a href="#"
+style="color:#7CFC00;text-decoration:none;margin:0 10px;">
+Home
+</a>
+
+<a href="#"
+style="color:#7CFC00;text-decoration:none;margin:0 10px;">
+Privacy Policy
+</a>
+
+<a href="#"
+style="color:#7CFC00;text-decoration:none;margin:0 10px;">
+Terms of Service
+</a>
+
+<a href="#"
+style="color:#7CFC00;text-decoration:none;margin:0 10px;">
+Contact
+</a>
+</p>
+
+</footer>
+
 </body>
 </html>
