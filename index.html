@@ -26,7 +26,7 @@ body{
 
 header{
     text-align:center;
-    padding:80px 20px 40px;
+    padding:60px 20px 30px;
 }
 
 header h1{
@@ -40,26 +40,43 @@ header p{
     margin:auto;
 }
 
-/* Added Navigation Styles for AdSense compliance */
+/* Navigation Menu Styles */
 .nav-menu {
-    margin-top: 25px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .nav-link {
-    color: #7CFC00;
+    color: #fff;
     text-decoration: none;
     font-weight: 500;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background 0.3s;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: 1px solid transparent;
 }
 
 .nav-link:hover {
     background: rgba(124, 252, 0, 0.1);
+    color: #7CFC00;
+}
+
+/* Active state for the menu button */
+.nav-link.active {
+    background: #7CFC00;
+    color: #000;
+    font-weight: 600;
 }
 
 .container{
@@ -68,14 +85,28 @@ header p{
     padding:20px;
 }
 
+/* View Control - Hides all sections by default */
+.view-section {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Shows the active section */
+.view-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .section{
     background:rgba(255,255,255,.03);
     border:1px solid rgba(255,255,255,.08);
     border-radius:20px;
     padding:30px;
     margin-bottom:30px;
-    /* Added scroll-margin so anchor links land cleanly */
-    scroll-margin-top: 20px; 
 }
 
 .section h2{
@@ -128,7 +159,7 @@ header p{
     color:#fff;
 }
 
-/* Fixed Ad Container to prevent Layout Shift */
+/* Ad Container */
 .ad-container {
     text-align: center;
     margin: 40px auto;
@@ -158,182 +189,212 @@ header p{
         resource packs and launcher development projects created by Mehetab.
     </p>
     
-    <!-- Added Working Navigation Menu (Mandatory for AdSense) -->
+    <!-- Interactive Navigation Menu -->
     <nav class="nav-menu">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#privacy" class="nav-link">Privacy Policy</a>
-        <a href="#terms" class="nav-link">Terms</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a onclick="switchView('view-showcase', this)" class="nav-link active">Showcase</a>
+        <a onclick="switchView('view-about', this)" class="nav-link">About</a>
+        <a onclick="switchView('view-contact', this)" class="nav-link">Contact</a>
+        <a onclick="switchView('view-privacy', this)" class="nav-link">Privacy</a>
+        <a onclick="switchView('view-terms', this)" class="nav-link">Terms</a>
     </nav>
 </header>
 
 <div class="container">
 
-<!-- Added IDs to all sections for working navigation -->
-<section id="about" class="section">
-    <h2>About Me</h2>
-    <p>
-        Hello! My name is Mehetab and I am the creator of CrazeStudio.
-        I enjoy building software, web applications, Minecraft tools,
-        resource packs, launchers and experimental projects.
-    </p>
-    <p>
-        Most of my projects are developed using mobile devices while
-        continuously learning HTML, CSS, JavaScript, Python and Android
-        development technologies.
-    </p>
-    <p>
-        This website serves as the official portfolio and project showcase
-        for CrazeStudio where visitors can explore my creations and follow
-        future development updates.
-    </p>
-</section>
+    <!-- HOME / SHOWCASE VIEW (Visible by Default) -->
+    <div id="view-showcase" class="view-section active">
+        <section class="section">
+            <h2>Featured Projects</h2>
+            <p>Explore the latest tools, resource packs, and software developed by CrazeStudio.</p>
+            <div class="projects">
+                <div class="card">
+                    <img src="https://github.com/CrazeStudio.png" alt="CrazeLauncher">
+                    <h3>CrazeLauncher</h3>
+                    <p>
+                        A Minecraft launcher project focused on providing a clean user
+                        experience and future support for launcher customization.
+                    </p>
+                    <a href="https://crazelauncher.netlify.app" target="_blank" class="btn btn-primary">Visit Website</a>
+                    <a href="https://github.com/CrazeStudio/CrazeLauncher" target="_blank" class="btn btn-secondary">GitHub</a>
+                </div>
 
-<section class="section">
-    <h2>About CrazeLauncher</h2>
-    <p>
-        CrazeLauncher is one of my primary projects. It is a Minecraft
-        launcher focused on creating a modern experience with a clean
-        interface and future expansion possibilities.
-    </p>
-    <p>
-        The project aims to simplify Minecraft management while providing
-        easy access to launcher features and customization options.
-    </p>
-</section>
-
-<section class="section">
-    <h2>About Ultra Low Fire</h2>
-    <p>
-        Ultra Low Fire is a Minecraft resource pack designed to improve
-        visibility by reducing the visual obstruction caused by fire
-        effects during gameplay.
-    </p>
-    <p>
-        The pack is lightweight and intended for players who prefer a
-        cleaner gameplay experience.
-    </p>
-</section>
-
-<section id="projects" class="section">
-    <h2>Featured Projects</h2>
-    <div class="projects">
-        <div class="card">
-            <img src="https://github.com/CrazeStudio.png" alt="CrazeLauncher">
-            <h3>CrazeLauncher</h3>
-            <p>
-                A Minecraft launcher project focused on providing a clean user
-                experience and future support for launcher customization.
-            </p>
-            <a href="https://crazelauncher.netlify.app" target="_blank" class="btn btn-primary">Visit Website</a>
-            <a href="https://github.com/CrazeStudio/CrazeLauncher" target="_blank" class="btn btn-secondary">GitHub</a>
-        </div>
-
-        <div class="card">
-            <img src="https://cdn.modrinth.com/data/WYu8BNGG/2361bcef871deea92435ba007ff2aff35f8a03b2.png" alt="Ultra Low Fire">
-            <h3>Ultra Low Fire</h3>
-            <p>
-                A lightweight Minecraft resource pack designed to improve
-                visibility during gameplay.
-            </p>
-            <a href="https://modrinth.com/project/WYu8BNGG" target="_blank" class="btn btn-primary">View Project</a>
-        </div>
+                <div class="card">
+                    <img src="https://cdn.modrinth.com/data/WYu8BNGG/2361bcef871deea92435ba007ff2aff35f8a03b2.png" alt="Ultra Low Fire">
+                    <h3>Ultra Low Fire</h3>
+                    <p>
+                        A lightweight Minecraft resource pack designed to improve
+                        visibility during gameplay.
+                    </p>
+                    <a href="https://modrinth.com/project/WYu8BNGG" target="_blank" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+        </section>
     </div>
-</section>
 
-<!-- Compliant AdSense Unit -->
-<div class="ad-container">
-    <span class="ad-label">Advertisement</span>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-3820525261727291"
-         data-ad-slot="9158388459"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
+    <!-- ABOUT VIEW (Hidden by Default) -->
+    <div id="view-about" class="view-section">
+        <section class="section">
+            <h2>About Me</h2>
+            <p>
+                Hello! My name is Mehetab and I am the creator of CrazeStudio.
+                I enjoy building software, web applications, Minecraft tools,
+                resource packs, launchers and experimental projects.
+            </p>
+            <p>
+                Most of my projects are developed using mobile devices while
+                continuously learning HTML, CSS, JavaScript, Python and Android
+                development technologies.
+            </p>
+        </section>
 
-<section id="privacy" class="section">
-    <h2>Privacy Policy</h2>
-    <p>
-        This website does not require visitors to create accounts or
-        submit personal information in order to browse publicly available content.
-    </p>
-    
-    <!-- MANDATORY Google AdSense Verbiage -->
-    <h3 style="color:#fff; margin:15px 0 5px; font-size:1.1rem;">Google AdSense & Advertising Cookies</h3>
-    <p>
-        We use Google AdSense to display advertisements. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.
-    </p>
-    <p>
-        Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the Internet.
-    </p>
-    <p>
-        Users may opt out of personalized advertising by visiting <a href="https://myadcenter.google.com/" target="_blank" style="color:#7CFC00;">Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info" target="_blank" style="color:#7CFC00;">www.aboutads.info</a>.
-    </p>
-    
-    <p>
-        Links on this website may direct visitors to external websites.
-        Those websites maintain their own privacy policies and practices. By continuing to use this website, visitors agree to the collection and processing of information as described in this Privacy Policy.
-    </p>
-</section>
+        <section class="section">
+            <h2>About CrazeLauncher</h2>
+            <p>
+                CrazeLauncher is one of my primary projects. It is a Minecraft
+                launcher focused on creating a modern experience with a clean
+                interface and future expansion possibilities.
+            </p>
+        </section>
 
-<section id="terms" class="section">
-    <h2>Terms of Service</h2>
-    <p>
-        By accessing and using this website, visitors agree to use it
-        responsibly and in accordance with applicable laws and regulations.
-    </p>
-    <p>
-        All original content, project names, graphics, logos, designs,
-        and materials published by CrazeStudio remain the property of
-        their respective owners unless otherwise stated.
-    </p>
-    <p>
-        Software, tools, resource packs, and downloadable content are
-        provided on an "as-is" basis without warranties regarding
-        availability, compatibility, or performance.
-    </p>
-</section>
+        <section class="section">
+            <h2>About Ultra Low Fire</h2>
+            <p>
+                Ultra Low Fire is a Minecraft resource pack designed to improve
+                visibility by reducing the visual obstruction caused by fire
+                effects during gameplay.
+            </p>
+        </section>
+    </div>
 
-<section id="contact" class="section">
-    <h2>Contact</h2>
-    <p>
-        For project updates, development information, bug reports, or
-        feedback, please visit the official CrazeStudio GitHub profile.
-    </p>
-    <p>
-        GitHub:
-        <a href="https://github.com/CrazeStudio" target="_blank" style="color:#7CFC00;">https://github.com/CrazeStudio</a>
-    </p>
-    <p>
-        Project Website:
-        <a href="https://crazelauncher.netlify.app" target="_blank" style="color:#7CFC00;">https://crazelauncher.netlify.app</a>
-    </p>
-</section>
+    <!-- CONTACT VIEW (Hidden by Default) -->
+    <div id="view-contact" class="view-section">
+        <section class="section">
+            <h2>Contact</h2>
+            <p>
+                For project updates, development information, bug reports, or
+                feedback, please visit the official CrazeStudio GitHub profile.
+            </p>
+            <p>
+                GitHub:
+                <a href="https://github.com/CrazeStudio" target="_blank" style="color:#7CFC00;">https://github.com/CrazeStudio</a>
+            </p>
+            <p>
+                Project Website:
+                <a href="https://crazelauncher.netlify.app" target="_blank" style="color:#7CFC00;">https://crazelauncher.netlify.app</a>
+            </p>
+        </section>
+    </div>
+
+    <!-- PRIVACY VIEW (Hidden by Default) -->
+    <div id="view-privacy" class="view-section">
+        <section class="section">
+            <h2>Privacy Policy</h2>
+            <p>
+                This website does not require visitors to create accounts or
+                submit personal information in order to browse publicly available content.
+            </p>
+            
+            <h3 style="color:#fff; margin:15px 0 5px; font-size:1.1rem;">Google AdSense & Advertising Cookies</h3>
+            <p>
+                We use Google AdSense to display advertisements. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.
+            </p>
+            <p>
+                Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the Internet.
+            </p>
+            <p>
+                Users may opt out of personalized advertising by visiting <a href="https://myadcenter.google.com/" target="_blank" style="color:#7CFC00;">Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info" target="_blank" style="color:#7CFC00;">www.aboutads.info</a>.
+            </p>
+            
+            <p>
+                Links on this website may direct visitors to external websites.
+                Those websites maintain their own privacy policies and practices. By continuing to use this website, visitors agree to the collection and processing of information as described in this Privacy Policy.
+            </p>
+        </section>
+    </div>
+
+    <!-- TERMS VIEW (Hidden by Default) -->
+    <div id="view-terms" class="view-section">
+        <section class="section">
+            <h2>Terms of Service</h2>
+            <p>
+                By accessing and using this website, visitors agree to use it
+                responsibly and in accordance with applicable laws and regulations.
+            </p>
+            <p>
+                All original content, project names, graphics, logos, designs,
+                and materials published by CrazeStudio remain the property of
+                their respective owners unless otherwise stated.
+            </p>
+            <p>
+                Software, tools, resource packs, and downloadable content are
+                provided on an "as-is" basis without warranties regarding
+                availability, compatibility, or performance.
+            </p>
+        </section>
+    </div>
+
+    <!-- Global AdSense Unit (Visible across all views) -->
+    <div class="ad-container">
+        <span class="ad-label">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3820525261727291"
+             data-ad-slot="9158388459"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
 </div>
 
 <footer style="text-align:center; padding:30px; color:#888; border-top:1px solid rgba(255,255,255,.08); margin-top:30px;">
     <p>© 2026 CrazeStudio. All Rights Reserved.</p>
     <p style="margin-top:10px;">
-        <!-- Fixed footer links to use section IDs -->
-        <a href="#about" style="color:#7CFC00;text-decoration:none;margin:0 10px;">About</a>
-        <a href="#privacy" style="color:#7CFC00;text-decoration:none;margin:0 10px;">Privacy Policy</a>
-        <a href="#terms" style="color:#7CFC00;text-decoration:none;margin:0 10px;">Terms of Service</a>
-        <a href="#contact" style="color:#7CFC00;text-decoration:none;margin:0 10px;">Contact</a>
+        <a onclick="switchView('view-showcase', document.querySelector('.nav-link:nth-child(1)'))" style="color:#7CFC00;text-decoration:none;margin:0 10px;cursor:pointer;">Home</a>
+        <a onclick="switchView('view-privacy', document.querySelector('.nav-link:nth-child(4)'))" style="color:#7CFC00;text-decoration:none;margin:0 10px;cursor:pointer;">Privacy</a>
+        <a onclick="switchView('view-terms', document.querySelector('.nav-link:nth-child(5)'))" style="color:#7CFC00;text-decoration:none;margin:0 10px;cursor:pointer;">Terms</a>
     </p>
 </footer>
 
-<!-- Mandatory Cookie Consent Banner -->
+<!-- Cookie Consent Banner -->
 <div id="cookie-banner" style="position:fixed; bottom:0; left:0; width:100%; background:#1a1a1c; border-top:1px solid #333; padding:15px; text-align:center; z-index:1000; font-size:14px; box-shadow: 0 -5px 15px rgba(0,0,0,0.5);">
     This website uses cookies, including third-party cookies from Google AdSense, to serve ads and improve your experience. 
-    <a href="#privacy" style="color:#7CFC00; text-decoration:underline; margin-left:5px;">Learn more</a>.
+    <a onclick="switchView('view-privacy', document.querySelector('.nav-link:nth-child(4)'))" style="color:#7CFC00; text-decoration:underline; margin-left:5px; cursor:pointer;">Learn more</a>.
     <button onclick="document.getElementById('cookie-banner').style.display='none'" style="margin-left:15px; padding:6px 16px; background:#7CFC00; color:#000; border:none; border-radius:5px; cursor:pointer; font-weight:700;">Got it!</button>
 </div>
+
+<!-- View Switching Logic -->
+<script>
+    function switchView(viewId, clickedLink) {
+        // 1. Hide all sections
+        const sections = document.querySelectorAll('.view-section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // 2. Remove 'active' styling from all navigation links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // 3. Show the selected section
+        document.getElementById(viewId).classList.add('active');
+
+        // 4. Highlight the clicked navigation link
+        if(clickedLink) {
+            clickedLink.classList.add('active');
+        }
+
+        // 5. Scroll smoothly back to the top of the container so the user isn't stuck at the bottom
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+</script>
 
 </body>
 </html>
