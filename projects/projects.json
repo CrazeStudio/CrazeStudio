@@ -3,24 +3,26 @@
     "id": "crazelauncher",
     "name": "CrazeLauncher",
     "tagline": "A Fast Minecraft Launcher.",
-    "description": "Crazelauncher is a fast minecraft launcher based on MojoLauncher.",
+    "description": "CrazeLauncher is a fast Minecraft launcher based on MojoLauncher.",
     "year": "2026",
     "status": "In development",
     "tags": ["App", "Open source"],
     "accent": "#FF6B4A",
     "highlights": [
-      "A Minecraft Launcher",
-    ],
-    "link": "github.com/crazestudio/crazelauncher"
+      "A Minecraft Launcher"
+    ]
   },
   {
-    "id": "Ultralowfire",
+    "id": "ultralowfire",
     "name": "Ultralowfire",
     "tagline": "Minecraft Resource Pack.",
-    "description": "It Lowers Minecraft Fire",
+    "description": "It lowers the Minecraft fire overlay.",
     "year": "2026",
     "status": "Released",
     "tags": ["Minecraft Resource Pack"],
     "accent": "#FFC93C",
-    "link":"https://modrinth.com/project/WYu8BNGG"
+    "highlights": [
+      "Lowers the fire so it blocks less of your view"
+    ]
   }
+]
