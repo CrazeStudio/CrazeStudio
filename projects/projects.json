@@ -11,8 +11,8 @@
     "highlights": [
       "A Minecraft Launcher"
     ],
-    "link": "https://github.com/crazestudio/crazelauncher",
-    "linkLabel": "View on GitHub"
+    "link": "https://crazelauncher.netlify.app",
+    "linkLabel": "Visit Website"
   },
   {
     "id": "ultralowfire",
@@ -28,7 +28,5 @@
     ],
     "link": "https://modrinth.com/project/WYu8BNGG",
     "linkLabel": "Get it on Modrinth",
-    "link":"crazelauncher.netlify.app",
-    "linkLabel": "For More Information Visit",
   }
 ]
