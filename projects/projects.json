@@ -10,7 +10,9 @@
     "accent": "#FF6B4A",
     "highlights": [
       "A Minecraft Launcher"
-    ]
+    ],
+    "link": "https://github.com/crazestudio/crazelauncher",
+    "linkLabel": "View on GitHub"
   },
   {
     "id": "ultralowfire",
@@ -23,6 +25,8 @@
     "accent": "#FFC93C",
     "highlights": [
       "Lowers the fire so it blocks less of your view"
-    ]
+    ],
+    "link": "https://modrinth.com/project/WYu8BNGG",
+    "linkLabel": "Get it on Modrinth"
   }
 ]
