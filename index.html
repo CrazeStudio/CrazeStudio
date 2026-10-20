@@ -83,6 +83,7 @@ dialog::backdrop{background:rgba(15,14,46,.7);backdrop-filter:blur(6px)}
 .ul path{fill:none;stroke:var(--coral);stroke-width:4;stroke-linecap:round}
 #cur{position:fixed;left:0;top:0;width:40px;height:40px;margin:-20px 0 0 -20px;pointer-events:none;z-index:50;display:none}
 @media(pointer:fine){#cur.on{display:block}}
+#count{max-width:44ch;text-align:right}
 </style>
 </head>
 <body>
@@ -319,7 +320,26 @@ function play(root, on) {
   A({ targets: root.querySelectorAll('.win'), scale: on ? 1.04 : 1, rotate: on ? -1.5 : 0, duration: 700, easing: 'easeOutElastic(1, .7)' });
 }
 
-fetch('projects/projects.json').then(r => { if (!r.ok) throw 0; return r.json(); }).catch(() => EMBEDDED).then(list => {
+async function load() {
+  let why = '';
+  for (const u of ['projects/projects.json', 'projects/project.json']) {
+    try {
+      const r = await fetch(u);
+      if (!r.ok) throw new Error(`${u} not found (${r.status})`);
+      const d = await r.json();
+      const list = Array.isArray(d) ? d : d.projects;
+      if (!Array.isArray(list)) throw new Error(`${u} must be a list of projects`);
+      return { list };
+    } catch (e) {
+      console.warn('CrazeStudio:', e);
+      if (!why) why = location.protocol === 'file:'
+        ? 'this page was opened as a local file, so the browser blocks loading projects.json. Serve the folder over http.'
+        : (e instanceof SyntaxError ? 'projects.json is not valid JSON (check commas and quotes).' : e.message);
+    }
+  }
+  return { list: EMBEDDED, why };
+}
+load().then(({ list, why }) => {
   const grid = $('#grid');
   const star = '<svg viewBox="0 0 24 24" class="star"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>';
   const row = list.map(p => `<span class="n">${esc(p.name)}</span>${star}`).join('');
@@ -328,7 +348,7 @@ fetch('projects/projects.json').then(r => { if (!r.ok) throw 0; return r.json();
     A({ targets: '#mq', translateX: ['0%', '-50%'], duration: 24000, easing: 'linear', loop: true });
     A({ targets: '.star', rotate: '1turn', duration: 4000, easing: 'linear', loop: true });
   }
-  $('#count').textContent = `${list.length} project${list.length === 1 ? '' : 's'}`;
+  $('#count').textContent = `${list.length} project${list.length === 1 ? '' : 's'}` + (why ? `. Showing built-in samples: ${why}` : '');
   grid.innerHTML = list.map((p, i) => `
     <button class="tile" data-i="${i}" type="button" aria-label="Open ${esc(p.name)}">
       <div class="art">${art(p)}</div>
